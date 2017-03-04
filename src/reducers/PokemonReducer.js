@@ -1,5 +1,5 @@
 import {
-    POKEMONS_FETCH_SUCCESS
+  POKEMONS_FETCH_SUCCESS
 } from '../actions';
 
 const INITIAL_STATE = {};
