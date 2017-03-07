@@ -22,6 +22,7 @@ const RouterComponent = () => {
                 title="Pokemon Details"
                 navigationBarStyle={navigationBarStyle}
                 titleStyle={titleStyle}
+                leftButtonIconStyle={{ tintColor: '#FFF' }}
             />
         </Router>
     );

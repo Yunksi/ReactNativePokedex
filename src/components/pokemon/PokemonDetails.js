@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class PokemonDetails extends Component {
     render() {
         return (
             <View>
-                <Text>Pokemon Details View</Text>
+                <Icon.Button
+                    name="facebook"
+                    backgroundColor="#3b5998" onButtonPress={console.log('Test')}
+                >
+                    Login with Facebook
+                </Icon.Button>
             </View>
         );
     }

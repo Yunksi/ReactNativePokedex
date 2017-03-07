@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
 import PokemonReducer from './PokemonReducer';
+import LoadingReducer from './LoadingReducer';
 
 export default combineReducers({
-    pokemons: PokemonReducer
+    pokemons: PokemonReducer,
+    loading: LoadingReducer
 });
