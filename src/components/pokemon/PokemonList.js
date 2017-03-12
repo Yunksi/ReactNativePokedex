@@ -1,14 +1,15 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { ListView, Button, StatusBar, ActivityIndicator, View } from 'react-native';
+import { ListView, StatusBar, ActivityIndicator, View } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchPokemons } from '../../actions';
-import ListItem from '../common/ListItem';
+import { fetchPokemons, setLoadingPokemons } from '../../actions';
+// import ListItem from '../common/ListItem';
+import { Button, ListItem } from '../common';
 
 
 
 class PokemonList extends Component {
-
+    
     componentWillMount() {
         StatusBar.setHidden(false);
         StatusBar.setBarStyle('light-content');
@@ -25,6 +26,7 @@ class PokemonList extends Component {
     }
 
     onLoadMoreButtonPress() {
+        this.props.setLoadingPokemons(true);
         this.props.fetchPokemons(this.props.next);
     }
 
@@ -37,11 +39,15 @@ class PokemonList extends Component {
     }
 
     renderFooter() {
-        return (<Button
-            onPress={this.onLoadMoreButtonPress.bind(this)}
-            title="Load More"
-            color="#841584"
-        />);
+        if (this.props.loadingAdditionalData) {
+            return (
+                <ActivityIndicator size="small" />
+            );
+        }
+        return (
+            <Button onPress={this.onLoadMoreButtonPress.bind(this)}>
+                Load more
+            </Button>);
     }
     renderRow(pokemon) {
         return <ListItem pokemon={pokemon} />;
@@ -60,22 +66,19 @@ class PokemonList extends Component {
                 dataSource={this.dataSource}
                 renderRow={this.renderRow}
                 renderFooter={this.renderFooter.bind(this)}
-                style={{ paddingTop: 10 }}
             />
         );
     }
 }
 
 const mapStateToProps = state => {
-    const { pokemons, loading } = state;
+    const { pokemons, loading, loadingAdditionalData } = state;
 
     const pokemonList = _.map(pokemons.results, (val, uid) => {
         return { ...val, uid };
     });
 
-    console.log(state);
-
-    return { pokemons: pokemonList, next: pokemons.next, loading };
+    return { pokemons: pokemonList, next: pokemons.next, loading, loadingAdditionalData };
 };
 
-export default connect(mapStateToProps, { fetchPokemons })(PokemonList);
+export default connect(mapStateToProps, { fetchPokemons, setLoadingPokemons })(PokemonList);

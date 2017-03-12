@@ -1,34 +1,75 @@
 import React from 'react';
+import { Platform } from 'react-native';
 import { Scene, Router } from 'react-native-router-flux';
 import PokemonList from './components/pokemon/PokemonList';
 import PokemonDetails from './components/pokemon/PokemonDetails';
+import FavoritesList from './components/pokemon/FavoritesList';
+import SearchPokemon from './components/pokemon/SearchPokemon';
+import { TabIcon } from './components/common';
+
 
 const RouterComponent = () => {
-    const { navigationBarStyle, titleStyle } = styles;
+    const { tabBarStyle, navigationBarStyle, titleStyle, sceneStyle } = styles;
 
     return (
-        <Router sceneStyle={{ paddingTop: 65 }}>
-            <Scene
-                key="pokemonList"
-                component={PokemonList}
-                title="Pokemons"
-                navigationBarStyle={navigationBarStyle}
-                titleStyle={titleStyle}
-                initial
-            />
-            <Scene
-                key="pokemonDetails"
-                component={PokemonDetails}
-                title="Pokemon Details"
-                navigationBarStyle={navigationBarStyle}
-                titleStyle={titleStyle}
-                leftButtonIconStyle={{ tintColor: '#FFF' }}
-            />
-        </Router>
+        <Router>
+            <Scene key="root">
+                <Scene key="tabbar" tabs tabBarStyle={tabBarStyle}>
+                    <Scene key="pokemons" title="Pokemons" icon={TabIcon} iconName={'list'} >
+                        <Scene
+                            key="pokemonList"
+                            component={PokemonList}
+                            title="Pokemons"
+                            navigationBarStyle={navigationBarStyle}
+                            titleStyle={titleStyle}
+                            initial
+                            sceneStyle={sceneStyle}
+                        />
+                        <Scene
+                            key="pokemonDetails"
+                            component={PokemonDetails}
+                            title="Pokemon Details"
+                            navigationBarStyle={navigationBarStyle}
+                            titleStyle={titleStyle}
+                            leftButtonIconStyle={{ tintColor: '#FFF' }}
+                        />
+                    </Scene>
+                    <Scene key="favorites" title="Favorites" icon={TabIcon} iconName={'star'}>
+                        <Scene
+                            key="favoritesList"
+                            component={FavoritesList}
+                            title="Favorites"
+                            navigationBarStyle={navigationBarStyle}
+                            titleStyle={titleStyle}
+                            sceneStyle={sceneStyle}
+                        />
+                    </Scene>
+                    <Scene key="search" title="Search" icon={TabIcon} iconName={'search'}>
+                        <Scene
+                            key="searchPokemon"
+                            component={SearchPokemon}
+                            title="Search"
+                            navigationBarStyle={navigationBarStyle}
+                            titleStyle={titleStyle}
+                            sceneStyle={sceneStyle}
+                        />
+                    </Scene>
+                </Scene>
+            </Scene>
+        </Router >
     );
 };
 
 const styles = {
+    sceneStyle: {
+        paddingTop: (Platform.OS === 'ios') ? 70 : 60,
+        paddingBottom: 60
+    },
+    tabBarStyle: {
+        backgroundColor: '#fff',
+        borderTopWidth: 0.5,
+        borderColor: '#b7b7b7'
+    },
     navigationBarStyle: {
         backgroundColor: '#EF5350'
     },

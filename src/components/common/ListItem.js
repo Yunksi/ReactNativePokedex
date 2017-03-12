@@ -69,4 +69,4 @@ const styles = {
     }
 };
 
-export default ListItem;
+export { ListItem };

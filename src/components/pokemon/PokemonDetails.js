@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 class PokemonDetails extends Component {
+
+    componentWillMount() {
+        console.log(this.props.pokemon);
+    }
+
     render() {
         return (
-            <View>
-                <Icon.Button
-                    name="facebook"
-                    backgroundColor="#3b5998" onButtonPress={console.log('Test')}
-                >
-                    Login with Facebook
-                </Icon.Button>
+            <View style={{ padding: 10 }}>
+
             </View>
         );
     }
 }
 
-export default PokemonDetails;
+const mapStateToProps = (state) => {
+    const { pokemonDetails } = state;
+
+    return { pokemonDetails };
+};
+
+export default connect(mapStateToProps, null)(PokemonDetails);
