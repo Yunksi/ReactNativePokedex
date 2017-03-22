@@ -34,18 +34,10 @@ class ListItem extends Component {
                             <Text style={titleStyle}>
                                 {name.charAt(0).toUpperCase() + name.slice(1)}
                             </Text>
-                            <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center', alignItems: 'center', paddingLeft: 15 }}>
-                                <View style={{ flex: 1, borderColor: 'rgba(46,117,58,0.5)', borderRadius: 5, backgroundColor: 'rgba(73,168,99,0.5)', borderWidth: 1 }}>
-                                    <Text style={{ padding: 3, textAlign: 'center' }}>Grass</Text>
-                                </View>
-                                <View style={{ flex: 1, borderColor: 'rgba(117,23,21,0.5)', borderRadius: 5, backgroundColor: 'rgba(250,49,45,0.5)', borderWidth: 1, marginLeft: 5 }}>
-                                    <Text style={{ padding: 3, textAlign: 'center' }}>Poison</Text>
-                                </View>
-                            </View>
                         </View>
                     </CardSection>
                 </View>
-            </TouchableWithoutFeedback>
+            </TouchableWithoutFeedback >
         );
     }
 }
@@ -57,16 +49,17 @@ const styles = {
         alignItems: 'center'
     },
     pokemonContainer: {
-        flex: 4
+        flex: 4,
+        justifyContent: 'center',
+        alignItems: 'flex-start'
     },
     imageStyle: {
         width: 50,
         height: 50
     },
     titleStyle: {
-        fontSize: 18,
-        paddingLeft: 15
+        fontSize: 22
     }
 };
 
-export { ListItem };
+export default ListItem;

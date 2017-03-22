@@ -3,17 +3,17 @@ import React, { Component } from 'react';
 import { ListView, StatusBar, ActivityIndicator, View } from 'react-native';
 import { connect } from 'react-redux';
 import { fetchPokemons, setLoadingPokemons } from '../../actions';
-// import ListItem from '../common/ListItem';
-import { Button, ListItem } from '../common';
+import ListItem from '../common/ListItem';
+import { Button } from '../common';
 
 
 
 class PokemonList extends Component {
-    
+
     componentWillMount() {
         StatusBar.setHidden(false);
         StatusBar.setBarStyle('light-content');
-        this.props.fetchPokemons('https://pokeapi.co/api/v2/pokemon');
+        this.props.fetchPokemons('https://pokeapi.co/api/v2/pokemon/?limit=1');
 
         this.createDataSource(this.props);
     }
@@ -41,7 +41,7 @@ class PokemonList extends Component {
     renderFooter() {
         if (this.props.loadingAdditionalData) {
             return (
-                <ActivityIndicator size="small" />
+                <ActivityIndicator size="large" />
             );
         }
         return (

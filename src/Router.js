@@ -9,7 +9,7 @@ import { TabIcon } from './components/common';
 
 
 const RouterComponent = () => {
-    const { tabBarStyle, navigationBarStyle, titleStyle, sceneStyle } = styles;
+    const { tabBarStyle, navigationBarStyle, titleStyle, sceneStyle, pokemonDetailsNavBarStyle } = styles;
 
     return (
         <Router>
@@ -22,16 +22,15 @@ const RouterComponent = () => {
                             title="Pokemons"
                             navigationBarStyle={navigationBarStyle}
                             titleStyle={titleStyle}
-                            initial
                             sceneStyle={sceneStyle}
                         />
                         <Scene
                             key="pokemonDetails"
                             component={PokemonDetails}
-                            title="Pokemon Details"
-                            navigationBarStyle={navigationBarStyle}
+                            navigationBarStyle={pokemonDetailsNavBarStyle}
                             titleStyle={titleStyle}
                             leftButtonIconStyle={{ tintColor: '#FFF' }}
+                            hideNavBar
                         />
                     </Scene>
                     <Scene key="favorites" title="Favorites" icon={TabIcon} iconName={'star'}>
@@ -72,6 +71,10 @@ const styles = {
     },
     navigationBarStyle: {
         backgroundColor: '#EF5350'
+    },
+    pokemonDetailsNavBarStyle: {
+        backgroundColor: '#EF5350',
+        borderBottomWidth: 0
     },
     titleStyle: {
         color: '#FFF'

@@ -1,8 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const TabIcon = ({ selected, title, iconName }) => {
+const TabIcon = ({ selected, iconName }) => {
     return (
         <View style={styles.tabIconContainer}>
             <Icon
@@ -10,7 +10,7 @@ const TabIcon = ({ selected, title, iconName }) => {
                 size={18}
                 color={selected ? '#444' : '#AAA'}
             />
-            <Text style={{ color: selected ? '#444' : '#AAA' }}>{title}</Text>
+            {/*<Text style={{ color: selected ? '#444' : '#AAA' }}>{title}</Text>*/}
         </View>
     );
 };
