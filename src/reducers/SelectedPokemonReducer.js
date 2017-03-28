@@ -4,7 +4,10 @@ import {
 
 const INITIAL_STATE = {
   name: '',
-  stats: []
+  stats: [],
+  abilities: [],
+  types: [],
+  sprites: {}
 };
 
 export default (state = INITIAL_STATE, action) => {
